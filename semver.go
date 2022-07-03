@@ -1,5 +1,5 @@
 /*
-Package SemVer provides methods for parsing and comparing semantic versions
+Package semver provides methods for parsing and comparing semantic versions
 following the https://semver.org specification, as well as support for version
 comparison operations with custom defined operator syntax.
 
@@ -17,7 +17,7 @@ method:
 The syntax of the comparison operators can be customized with the Operators
 struct and Config method.
 */
-package SemVer
+package semver
 
 import (
 	"fmt"
@@ -62,7 +62,7 @@ type config struct {
 Config returns an intialized config object which can be passed to the String.Get
 method and define custom operator syntax and regex.
 
-The regex string to parse the operators is combined with the SemVer regex. An invalid
+The regex string to parse the operators is combined with the semver regex. An invalid
 regex string will result in a panic.
 */
 func Config(ops Operators, regex string) *config {
@@ -110,7 +110,7 @@ comparisons.
 */
 type Version struct {
 	// operator is an optional value for the set of comparison operators for the
-	// version. See the SemVer.Operators for more info.
+	// version. See the semver.Operators for more info.
 	operator Operator
 	// major is the semantic major release version number. Must be a positive
 	// integer.
@@ -173,7 +173,7 @@ func (v *Version) Metadata() string {
 	return v.buildMetadata
 }
 
-// ToString returns the SemVer.String for the version.
+// ToString returns the semver.String for the version.
 func (v *Version) ToString() String {
 	var s strings.Builder
 	s.WriteString(string(v.operator))

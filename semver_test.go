@@ -1,4 +1,4 @@
-package SemVer
+package semver
 
 import (
 	"encoding/json"
@@ -8,9 +8,9 @@ import (
 	. "github.com/franela/goblin"
 )
 
-func TestSemVerParse(t *testing.T) {
+func TestSemverParse(t *testing.T) {
 	g := Goblin(t)
-	g.Describe("SemVer String parsing to Version", func() {
+	g.Describe("semver String parsing to Version", func() {
 		g.It("Should parse all semantic version parts", func() {
 			v := String(">=v1.2.3-pre+meta").Get()
 			g.Assert(v.Operator()).Equal(">=")
@@ -26,7 +26,7 @@ func TestSemVerParse(t *testing.T) {
 			g.Assert(v.String()).Equal("v1.2.3-pre+meta")
 		})
 
-		g.It("Should return SemVer.String for version", func() {
+		g.It("Should return semver.String for version", func() {
 			v := String(">=v1.2.3-pre+meta").Get()
 			g.Assert(string(v.ToString())).Equal(">=v1.2.3-pre+meta")
 		})
@@ -221,7 +221,7 @@ func TestComparePreRelease(t *testing.T) {
 func Example() {
 	v := String("v3.14.15").Get()
 
-	// The 'v' in a SemVer.String is optional.
+	// The 'v' in a semver.String is optional.
 	v2 := String("3.14.15").Get()
 
 	fmt.Println(v.Compare(v2))
@@ -239,7 +239,7 @@ func Example_full() {
 }
 
 func Example_marshal() {
-	// Because a SemVer.String is a just a string it can be
+	// Because a semver.String is a just a string it can be
 	// marshaled and unmarshaled to other data formats
 	type Data struct {
 		Version String `json:"version"`
