@@ -12,7 +12,7 @@ go get -u github.com/afloesch/semver
 
 ## Basic Usage
 
-SemVer comparisons can return an integer or boolean result.
+Semver comparisons can return an integer or boolean result.
 
 ```go
 package main
@@ -20,8 +20,8 @@ package main
 import "github.com/afloesch/semver"
 
 func main() {
-  v := SemVer.String(">=v1.0.0").Get()
-  v2 := SemVer.String("v1.1.0").Get()
+  v := semver.String(">=v1.0.0").Get()
+  v2 := semver.String("v1.1.0").Get()
   
   // Version.Compare returns an integer of 1, -1, or 0.
   fmt.Println(v.Compare(v2) == -1)
@@ -34,7 +34,7 @@ func main() {
 
 ## Testing
 
-SemVer has complete code coverage.
+Semver has complete code coverage.
 
 ```
 go test . -v -cover
