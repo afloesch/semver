@@ -12,7 +12,7 @@ go get -u github.com/afloesch/semver
 
 ## Basic Usage
 
-SemVer can do version comparisons which return an integer or boolean result.
+SemVer comparisons can return an integer or boolean result.
 
 ```go
 package main
@@ -37,5 +37,5 @@ func main() {
 SemVer has complete code coverage.
 
 ```
-go test ./... -v -cover
+go test . -v -cover
 ```

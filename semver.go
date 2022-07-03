@@ -15,8 +15,7 @@ method:
 < - Less than.
 
 The syntax of the comparison operators can be customized with the Operators
-struct and Config method, which makes it easy to handle version comparisons with
-any package manager format.
+struct and Config method.
 */
 package SemVer
 
@@ -155,12 +154,21 @@ func (v *Version) Patch() int {
 	return int(v.patch)
 }
 
-// PreRelease returns semantic version pre release data as a string.
+// PreRelease returns semantic version pre release data as a string
+// which comes after the patch verison and a hyphen. It can contain
+// alphanumeric characters as well as hyphens or periods.
+//
+// Pre release data is split on any period, and each part compared
+// individually as outlined by https://semver.org/#spec-item-11.
 func (v *Version) PreRelease() string {
 	return v.preRelease
 }
 
 // Metadata returns semantic version build metadata as a string.
+//
+// Build metadata can contain any alphanumeric characters
+// as well as hyphens or periods. It comes after the + in a
+// semantic version string.
 func (v *Version) Metadata() string {
 	return v.buildMetadata
 }
@@ -194,7 +202,10 @@ func (v *Version) String() string {
 OpCompare tests any current version Operator against the version param and
 returns false if the passed version violates the Operator rule.
 
-Version Operators on the version param are ignored.
+This can also produce a simple boolean result if the version operator
+is empty. An empty operator does an equality check on the two versions.
+
+Version Operators on the passed version param are ignored.
 */
 func (v *Version) OpCompare(version *Version) bool {
 	i := v.Compare(version)

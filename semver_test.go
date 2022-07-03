@@ -268,6 +268,12 @@ func Example_opCompare() {
 	// Output: false
 }
 
+func ExampleString_Get() {
+	v := String(">=v3.14.15").Get()
+	fmt.Println(v.Major())
+	// Output: 3
+}
+
 func ExampleVersion_String() {
 	v := String(">=v3.14.15").Get()
 
@@ -284,20 +290,12 @@ func ExampleVersion() {
 }
 
 func ExampleVersion_PreRelease() {
-	// Prerelease data comes after the patch verison and a hyphen. It
-	// can contain alphanumeric characters as well as hyphens and period.
-	//
-	// Prerelease versions are split on any period, and each part compared
-	// individually as outlined by https://semver.org/#spec-item-11.
 	v := String("v1.0.0-alpha.1").Get()
 	fmt.Println(v.PreRelease())
 	// Output: alpha.1
 }
 
 func ExampleVersion_Metadata() {
-	// Build metadata can contain any alphanumeric characters
-	// as well as hyphens or periods. It comes after the + in a
-	// semantic version string.
 	v := String("v1.0.0-rc+issue-46").Get()
 	fmt.Println(v.Metadata())
 	// Output: issue-46
